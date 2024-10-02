@@ -15,6 +15,14 @@ export class Journey {
 		this.validateJourney();
 	}
 
+	get haulType(): string {
+		return this._distances.reduce((sum, distance) => sum + distance, 0) /
+			(this._stops.length - 1) >=
+			50
+			? "Long Haul"
+			: "Short Haul";
+	}
+
 	get stops(): Stop[] {
 		return [...this._stops];
 	}
